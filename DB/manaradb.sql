@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : ven. 29 mars 2024 à 23:39
+-- Généré le : ven. 05 avr. 2024 à 02:30
 -- Version du serveur : 10.4.32-MariaDB
 -- Version de PHP : 8.2.12
 
@@ -37,19 +37,37 @@ CREATE TABLE `campaign` (
   `Imagelink` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Déchargement des données de la table `campaign`
+--
+
+INSERT INTO `campaign` (`Name`, `Purpose`, `OwnerEmail`, `OwnerPassword`, `CampaignID`, `Budget`, `Imagelink`) VALUES
+(' Help the people of Gaza', 'Civilians are paying a horrific price for the ongoing war.', 'melkimariem150@gmail.com', 'insat2024', 26, 0, 'img1.jpg'),
+(' Raising funds to evacuate civilians from Gaza', 'Here are directions and tips if you want to raise money for those trying to leave Gaza.', 'melkimariem150@gmail.com', 'insat2024', 27, 100, 'img2.jpg'),
+('Help my family in Gaza get to safety', 'My cousin Mahmoud lives in Gaza and he lost his business and his house.\r\nHelp him evacuate the Gaza ', 'melkimariem150@gmail.com', 'insat2024', 28, 0, 'img3.jpg');
+
 -- --------------------------------------------------------
 
 --
--- Structure de la table `fun`
+-- Structure de la table `fund`
 --
 
-CREATE TABLE `fun` (
+CREATE TABLE `fund` (
+  `FundID` int(11) NOT NULL,
   `CampaignID` int(11) NOT NULL,
   `UserEmail` varchar(50) NOT NULL,
-  `UserPassword` varchar(50) NOT NULL,
-  `Date` date NOT NULL,
+  `userPassword` varchar(50) NOT NULL,
+  `Date` datetime NOT NULL,
   `Amount` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `fund`
+--
+
+INSERT INTO `fund` (`FundID`, `CampaignID`, `UserEmail`, `userPassword`, `Date`, `Amount`) VALUES
+(1, 27, 'melkimariem150@gmail.com', 'insat2024', '2024-04-05 02:28:05', 60),
+(3, 27, 'melkimariem150@gmail.com', 'insat2024', '2024-04-05 02:29:24', 40);
 
 -- --------------------------------------------------------
 
@@ -84,14 +102,14 @@ ALTER TABLE `campaign`
   ADD KEY `OwnerPassword` (`OwnerPassword`);
 
 --
--- Index pour la table `fun`
+-- Index pour la table `fund`
 --
-ALTER TABLE `fun`
-  ADD PRIMARY KEY (`CampaignID`,`UserEmail`,`Date`),
-  ADD KEY `UserEmail` (`UserEmail`),
-  ADD KEY `UserPassword` (`UserPassword`),
+ALTER TABLE `fund`
+  ADD PRIMARY KEY (`FundID`),
   ADD KEY `CampaignID` (`CampaignID`),
-  ADD KEY `UserEmail_2` (`UserEmail`,`UserPassword`);
+  ADD KEY `UserEmail` (`UserEmail`),
+  ADD KEY `userPassword` (`userPassword`),
+  ADD KEY `UserEmail_2` (`UserEmail`,`userPassword`);
 
 --
 -- Index pour la table `user`
@@ -107,7 +125,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT pour la table `campaign`
 --
 ALTER TABLE `campaign`
-  MODIFY `CampaignID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `CampaignID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+
+--
+-- AUTO_INCREMENT pour la table `fund`
+--
+ALTER TABLE `fund`
+  MODIFY `FundID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Contraintes pour les tables déchargées
@@ -120,11 +144,11 @@ ALTER TABLE `campaign`
   ADD CONSTRAINT `campaign_ibfk_1` FOREIGN KEY (`OwnerEmail`) REFERENCES `user` (`Email`);
 
 --
--- Contraintes pour la table `fun`
+-- Contraintes pour la table `fund`
 --
-ALTER TABLE `fun`
-  ADD CONSTRAINT `fun_ibfk_1` FOREIGN KEY (`CampaignID`) REFERENCES `campaign` (`CampaignID`),
-  ADD CONSTRAINT `fun_ibfk_2` FOREIGN KEY (`UserEmail`,`UserPassword`) REFERENCES `user` (`Email`, `Password`);
+ALTER TABLE `fund`
+  ADD CONSTRAINT `fund_ibfk_1` FOREIGN KEY (`CampaignID`) REFERENCES `campaign` (`CampaignID`),
+  ADD CONSTRAINT `fund_ibfk_2` FOREIGN KEY (`UserEmail`,`userPassword`) REFERENCES `user` (`Email`, `Password`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

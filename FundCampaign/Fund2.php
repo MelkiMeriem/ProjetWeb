@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+    <link rel="stylesheet" href="../Login&SignUp/style.css">
     <link rel="stylesheet" href="../HomePage/HomePage.css">
-    <link rel="stylesheet" href="PrivatePage.css">
       <script src="../HomePage/HomePage.js"></script>
 
     <title>Document</title>
@@ -41,49 +41,47 @@
   
     <!-- Header -->
     <div class="w3-container" style="margin-top:80px" id="showcase">
-      <h1 class="w3-jumbo"><b>Your platform for mutual aid</b></h1>
-    </div>
-    <div class="w3-row-padding w3-grayscale">
-
     <?php
-      $link=mysqli_connect("localhost","root","","manaradb");
-
-    $sql="select * from campaign";
+    $email=$_POST["email"];
+    $psw=$_POST["psw"];
+    $amt=$_POST["amt"];
+    $cid=$_POST["cid"];
+    $currentDate = date("Y-m-d H:i:s");
+    $link=mysqli_connect("localhost","root","","manaradb");
+    $sql="select * from user where  Email='$email' and Password='$psw'
+    ";
     $result = mysqli_query($link, $sql);
 
     if (mysqli_num_rows($result) > 0) {
-      // Fetch associative array
-      while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-      $name=$row["Name"];
-      $imagelink=$row["Imagelink"];
-      $purpose=$row["Purpose"];
-      $id=$row["CampaignID"];
+        $req1="  insert into fund (fundid ,CampaignID,UserEmail,UserPassword,Date,Amount) 
+        values('','$cid','$email' ,'$psw','$currentDate','$amt')";
+        
+        $req2="
+        Update Campaign
+        set budget=budget+'$amt'
+        where CampaignID='$cid'
+        ";
+        mysqli_query($link,$req1);
+        mysqli_query($link,$req2);
+        echo " <h1 class='w3-jumbo'><b>Thank you for your help . </b></h1>";
 
+        
+    }
+    else{
+        echo " <h1 class='w3-jumbo'><b> Wrong Mail or Password. </b></h1>";
 
-      echo "
-    <div class='w3-col m4 w3-margin-bottom'>
-    <div class='w3-light-grey'>
-      <img src='../images/$imagelink' alt='' style='width:100%'>
-      <div class='w3-container'>
-        <p class='w3-opacity'>
-         '$name'
-          </p>
-        <p>'$purpose' 
-         <form method='POST' action='../FundCampaign/FundCampaign.php'  >
-         <input type='text' value='$id'  id='cid' name='cid' disabled >
-        <input type='submit' value='Fund Campaign' id='btn' name='btn'>
-        </form></p>
-       
-      </div>
-    </div>
-  </div>" ;};}
-  mysqli_close($link);
+    }
+    mysqli_close($link);
 
     ?>
+     
     </div>
-    
+  
 
   
+    
+
+</div>
     
   
 </body>
