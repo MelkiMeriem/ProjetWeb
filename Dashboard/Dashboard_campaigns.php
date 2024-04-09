@@ -13,10 +13,10 @@
         <thead>
             <tr class="first_row">
                 <th width="200">Name</th>
+                <th width="100">Campaign ID</th>
                 <th width="700">Purpose</th>
                 <th width="200">Owner Email</th>
                 <th width="400">OwnerPassword</th>
-                <th width="100">Campaign ID</th>
                 <th width="100">Budget</th>
                 <th width="200">Imagelink</th>
             </tr>
@@ -37,10 +37,10 @@
             while ($row = mysqli_fetch_assoc($result)) {
                 echo "<tr>";
                 echo "<td>" . $row["Name"] . "</td>";
+                echo "<td>" . $row["CampaignID"] . "</td>";
                 echo "<td>" . $row["Purpose"] . "</td>";
                 echo "<td>" . $row["OwnerEmail"] . "</td>";
                 echo "<td>" . $row["OwnerPassword"] . "</td>";
-                echo "<td>" . $row["CampaignID"] . "</td>";
                 echo "<td>" . $row["Budget"] . "</td>";
                 echo "<td>". $row["Imagelink"] ."</td>";
                 echo "</tr>";
