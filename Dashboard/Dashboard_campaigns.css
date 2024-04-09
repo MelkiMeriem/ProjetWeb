@@ -1,0 +1,118 @@
+.content-table
+{   
+    margin: 25px 0px;
+    
+    min-width:900px;
+    border-radius: 25px 25px 0 0;
+    overflow: hidden;
+    
+    
+}
+
+   
+.content-table thead tr{
+    background-color: #009879 ;
+    color:white;
+    text-align: left;
+    font-weight: bold;
+    position:sticky;
+    top:0px;
+
+}
+.content-table td,
+.content-table th{
+    padding:12px 15px;
+}
+
+.content-table tbody tr:nth-of-type(even)
+{
+    background-color:#f3f3f3 ;
+    
+}
+#title{
+    font-size: 2.0em;
+    
+    display: block;
+    margin-top: 30px;
+    width: 400px;
+    padding-left: 10px;
+    font-weight: bold;
+    color:  #009879;
+    font-family: Helvetica,'Courier New','Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+hr{
+    width:370px;
+    margin-left: 10px;
+    height: 1px;
+    background-color: #009879;
+    
+}
+#container{
+    width:900px;
+    height:600px;
+    position:relative;
+    top:20px;
+}
+
+#input1{ 
+    position:absolute;
+    width:180px;
+    outline:none;
+    font-size:1.4em;
+    margin-left: 18px;
+    padding:0 20px;
+    height: 28px;
+    border-radius:10px;
+    border:2px solid #009879;
+    background: transparent;
+    transition: 01s ease;
+    z-index:1111;
+   
+}
+.labelline{
+    position:absolute;
+    font-size:1.4em;
+    color:#009879;
+    padding:0 25px;
+    margin:0 20px;
+    border-radius: 8px;
+    background-color:hsl(149, 59%, 86%) ;
+    transition: 0.2s ease;
+    width: 170px;
+    height: 30px;
+    
+}
+#input1:focus+.labelline , #input1:valid+.labelline{
+    color:#009879;
+    
+    background-color: white ;
+    padding:0 4px; 
+    font-size: 0.9em;
+    transform: translate(10px,-10px)scale(1);
+    z-index:1111;
+    width: 102px;
+    height: 14px;
+   
+
+}
+#submit{
+    position:absolute;
+    top:120px;
+    left:25px;
+    width: 170px;
+    height: 30px;
+    font-size: 1.3em;
+    font-family:  Tahoma, sans-serif; 
+    background-color: hsl(0, 90%, 71%);
+    border-radius: 7px;
+    transition: background-color 0.2s ease; 
+    
+}
+#submit:hover{
+    background-color: hsl(0, 90%, 61%) ;
+}
+p{  padding-top: 10px;
+    padding-left: 20px;
+    font-size: 1.1em;
+   
+}
