@@ -6,7 +6,7 @@
 
 
   <?php 
-    include("../public/menu.php");
+    include("../public/menu2.php");
   ?>
   
 

@@ -1,34 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <<?php 
-    include("../public/menu.php");
+    include("../public/menu1.php");
   ?>
-  <!-- Overlay effect when opening sidebar on small screens -->
-  <div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
   
-  <!-- !PAGE CONTENT! -->
-  <div class="w3-main" style="margin-left:340px;margin-right:40px">
-  
-    <!-- Header -->
-    <div class="w3-container" style="margin-top:80px" id="showcase">
-      <h1 class="w3-jumbo"><b>Your platform for mutual aid</b></h1>
-    </div>
-    
-  
-    <!-- Modal for full size images on click-->
-    <div id="modal01" class="w3-modal w3-black" style="padding-top:0" onclick="this.style.display='none'">
-      <span class="w3-button w3-black w3-xxlarge w3-display-topright">×</span>
-      <div class="w3-modal-content w3-animate-zoom w3-center w3-transparent w3-padding-64">
-        <img id="img01" class="w3-image">
-        <p id="caption"></p>
-      </div>
-    </div>
-      
 
 <!-- Sign up Form -->
     <!-- Button to open the modal -->
 
 <!-- The Modal (contains the Sign Up form) -->
+<div>
   <form class="modal-content" action="../Account/Account.php" method="POST">
     <div class="container">
       <h1>Sign Up</h1>

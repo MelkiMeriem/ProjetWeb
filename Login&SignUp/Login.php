@@ -24,6 +24,7 @@ $message = "";
           $_SESSION["Email"] = $email;
           $_SESSION["Age"] = $row["Age"];
           $_SESSION["Name"] = $row["Name"];
+          $_SESSION["psw"] = $pwd;
           $nbr_compaign_sql = "SELECT count(CampaignID) as nbrCompaign FROM campaign WHERE OwnerEmail = '$email'";
           $compaign_result = mysqli_query($conn, $nbr_compaign_sql);
           $row2 = mysqli_fetch_assoc($compaign_result);
@@ -51,7 +52,7 @@ $message = "";
 
 
 <?php 
-    include("../public/menu.php");
+    include("../public/menu1.php");
   ?>
   
 

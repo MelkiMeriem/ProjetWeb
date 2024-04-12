@@ -1,6 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
 
+<?php
+  session_start();
+?>
 
 <?php 
     include("../public/menu.php");
@@ -39,10 +40,6 @@
       
       <label for="psw"><b>Password</b></label>
       <input type="password" placeholder="Enter Password" name="psw" required>
-
-     
-     
-
       <label>
         <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
       </label>
@@ -56,6 +53,3 @@
   </form>
 </div>
     
-  
-</body>
-</html>
