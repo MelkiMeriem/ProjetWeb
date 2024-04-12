@@ -46,10 +46,10 @@
     <div class="w3-row-padding w3-grayscale">
 
     <?php
-      $link=mysqli_connect("localhost","root","","manaradb");
+    require("../DB/database.php");
 
     $sql="select * from campaign";
-    $result = mysqli_query($link, $sql);
+    $result = mysqli_query($conn, $sql);
 
     if (mysqli_num_rows($result) > 0) {
       // Fetch associative array
@@ -77,7 +77,7 @@
       </div>
     </div>
   </div>" ;};}
-  mysqli_close($link);
+  mysqli_close($conn);
 
     ?>
     </div>
