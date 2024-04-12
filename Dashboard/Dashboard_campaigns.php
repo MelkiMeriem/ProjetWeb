@@ -11,7 +11,7 @@
     <hr>
 
     <?php
-    include('./DB_Connexion.php');
+    include('../DB/database.php');
     include('./TableDisplay.php');
         $sql = "SELECT * FROM campaign";
         $result = mysqli_query($conn, $sql);

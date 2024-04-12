@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./Dashboard.css">
-    <title>Users_Table</title>
+    <title>UsersTable</title>
 </head>
 <body>
-    <p1 id="title">Users_Table</p1>
+    <p1 id="title">Users Table</p1>
     <hr>
 
     <?php
-    include('./DB_Connexion.php');
+    include('../DB/database.php');
     include('./TableDisplay.php');
         $sql = "SELECT * FROM user";
         $result = mysqli_query($conn, $sql);
