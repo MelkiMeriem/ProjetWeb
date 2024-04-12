@@ -23,7 +23,7 @@
             }
         }
 
-        $tableHeaders = ["Name", "Age", "Email", "Password"];
+        $tableHeaders = ["Name", "Age", "Email", "Password","Phone Number"];
 
         displayTable($data, $tableHeaders, "CampaignID", "Campaign");
 ?>

@@ -23,7 +23,7 @@
             }
         }
 
-        $tableHeaders = ["Name", "Purpose", "Owner Email", "Owner Password", "Campaing ID", "Budget", "Imagelink"];
+        $tableHeaders = ["Name", "Purpose", "Owner Email", "Owner Password", "Campaing ID", "Budget", "Imagelink","Sum"];
 
         displayTable($data, $tableHeaders, "CampaignID", "Campaign");
 ?>
