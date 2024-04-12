@@ -16,17 +16,15 @@
         $sql = "SELECT * FROM campaign";
         $result = mysqli_query($conn, $sql);
 
-        $data = []; // Initialize empty array for table data
+        $data = []; 
         if (mysqli_num_rows($result) > 0) {
             while ($row = mysqli_fetch_assoc($result)) {
-                $data[] = $row; // Add each row to the data array
+                $data[] = $row; 
             }
         }
 
-        // Table headers for campaigns
         $tableHeaders = ["Name", "Purpose", "Owner Email", "Owner Password", "Campaing ID", "Budget", "Imagelink"];
 
-        // Call displayTable function
         displayTable($data, $tableHeaders, "CampaignID", "Campaign");
 ?>
 
@@ -39,12 +37,12 @@
         </form>
 
         <?php
-        require_once('DeleteData.php'); // Include the deleteData.php file
+        require_once('DeleteData.php'); 
 
         if (isset($_POST['submit'])) {
           if (isset($_POST['id']) && !empty($_POST['id'])) {
             $id = filter_input(INPUT_POST, 'id', FILTER_VALIDATE_INT);
-            deleteData($conn, 'campaign', 'CampaignID', $id); // Call the delete function
+            deleteData($conn, 'campaign', 'CampaignID', $id); 
           } else {
             echo "<p>Please enter a Campaign ID to delete.</p>";
           }

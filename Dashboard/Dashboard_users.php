@@ -16,17 +16,15 @@
         $sql = "SELECT * FROM user";
         $result = mysqli_query($conn, $sql);
 
-        $data = []; // Initialize empty array for table data
+        $data = []; 
         if (mysqli_num_rows($result) > 0) {
             while ($row = mysqli_fetch_assoc($result)) {
-                $data[] = $row; // Add each row to the data array
+                $data[] = $row; 
             }
         }
 
-        // Table headers for campaigns
         $tableHeaders = ["Name", "Age", "Email", "Password"];
 
-        // Call displayTable function
         displayTable($data, $tableHeaders, "CampaignID", "Campaign");
 ?>
 
@@ -39,12 +37,11 @@
         </form>
 
         <?php
-        require_once('./DeleteData.php'); // Include the deleteData.php file
-
+        require_once('./DeleteData.php'); 
         if (isset($_POST['submit'])) {
           if (isset($_POST['email']) && !empty($_POST['email'])) {
             $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
-            deleteData($conn, 'user', 'email', $email); // Call the delete function
+            deleteData($conn, 'user', 'email', $email); 
           } else {
             echo "<p>Please enter a user email to delete.</p>";
           }
