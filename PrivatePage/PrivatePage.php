@@ -12,13 +12,10 @@ include("../public/menu2.php");
 <?php
   session_start();
   include("../DB/database.php");
-
- 
     $sql="SELECT * from campaign";
     $result = mysqli_query($conn, $sql);
- if(mysqli_num_rows($result) >0){
-      
-      while($row = mysqli_fetch_assoc($result)) {
+    if (mysqli_num_rows($result) > 0) {
+      while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
       $name=$row["Name"];
       $imagelink=$row["Imagelink"];
       $purpose=$row["Purpose"];
@@ -45,10 +42,13 @@ include("../public/menu2.php");
       }
       
     }
-  
-     
-    
-  mysqli_close($conn);
-?>
+    mysqli_close($conn);
+
+   
+ 
+ 
+
+    ?>
+    </div>
 
  </div>   
