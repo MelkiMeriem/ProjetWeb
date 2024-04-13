@@ -21,9 +21,9 @@
     </div>
     <div class="w3-bar-block">
     <a href="../PrivatePage/PrivatePage.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Home</a> 
-      <a href="../CreateCampaign/CreateCampaign.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Create Campaign</a> 
+      <a href="../CreateCampaign/CreateCampaign.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Create Campaign</a> 
       <a href="../Account/Account.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Account</a> 
-      <a href="../HomePage/HomePage.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Log out</a> 
+      <a href="../HomePage/HomePage.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Log out</a> 
   
     </div>
   </nav>

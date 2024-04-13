@@ -21,9 +21,9 @@
     </div>
     <div class="w3-bar-block">
     <a href="../PrivatePage/PrivatePage.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Home</a> 
-      <a href="../CreateCampaign/CreateCampaign.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Create Campaign</a> 
+      <a href="../CreateCampaign/CreateCampaign.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Create Campaign</a> 
       <a href="../Account/Account.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Account</a> 
-      <a href="../HomePage/HomePage.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Log out</a> 
+      <a href="../HomePage/HomePage.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Log out</a> 
   
     </div>
   </nav>
@@ -59,7 +59,7 @@
       <label for="psw"><b>Password</b></label>
       <input type="password" placeholder="Enter Password" name="psw" required>
       <label for="amt"><b>Campaign's ID : </b></label><br>
-      <input type="text" name="cid" value=<?php echo $id ?> disabled >
+      <input type="text" name="cid" disabled value=<?php echo $id ?>  >
        <br>
       <label for="amt"><b>Amount</b></label><br>
       <input type="text" placeholder="Enter the Amount" name="amt" required>

@@ -1,3 +1,58 @@
+<?php
+  session_start();
+?>
+<?php
+
+$message = "";
+
+  include("../DB/database.php");
+
+  if($_SERVER['REQUEST_METHOD'] === 'POST'){
+   
+      $email = $_POST["email"];
+      $psw = $_POST["psw"];
+      $email_sql = "SELECT * FROM user WHERE Email = '$email' ";
+      
+      $email_result = mysqli_query($conn, $email_sql);
+
+      if(mysqli_num_rows($email_result) == 1){
+
+        $row = mysqli_fetch_assoc($email_result);
+        $password = $row["Password"];
+        $pwd = $_POST["psw"];
+
+        if($psw == $password){
+
+          $_SESSION["Email"] = $email;
+          $_SESSION["Age"] = $row["Age"];
+          $_SESSION["Name"] = $row["Name"];
+          $_SESSION["PhoneNumber"] = $row["phone"];
+          $nbr_compaign_sql = "SELECT count(CampaignID) as nbrCompaign FROM campaign WHERE OwnerEmail = '$email'";
+          $nbr_fund_sql = "SELECT count(FundID) as nbrFund FROM fund WHERE UserEmail = '$email'";
+          $compaign_result = mysqli_query($conn, $nbr_compaign_sql);
+          $fund_result = mysqli_query($conn, $nbr_fund_sql);
+          $row2 = mysqli_fetch_assoc($compaign_result);
+          $row3 = mysqli_fetch_assoc($fund_result);
+          $_SESSION["nbrCompaign"] = $row2["nbrCompaign"];
+          $_SESSION["nbrFund"] = $row3["nbrFund"];
+          header("Location: ../Account/Account.php");
+  
+        }
+        else{ 
+
+          $message =  "Incorret Password !<br>";
+
+        }
+      }
+      else{
+
+        $message =  "Sorry ! This Email does not exist.<br>";
+
+      }
+    }
+    
+  mysqli_close($conn);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,6 +60,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" 
+    rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
         <link rel="stylesheet" href="../HomePage/HomePage.css">
       <script src="../HomePage/HomePage.js"></script>
@@ -21,9 +78,9 @@
       <h3 class="w3-padding-64"><b>Manara</b></h3>
     </div>
     <div class="w3-bar-block">
-      <a href="../HomePage/HomePage.html" onclick="w3_close()"  class="w3-bar-item w3-button w3-hover-white">Home</a> 
-      <a href="../Login&SignUp/SignUp.html" onclick="w3_close()"  class="w3-bar-item w3-button w3-hover-white">Sign Up</a> 
-      <a href="../Login&SignUp/Login.html" onclick="w3_close()"  class="w3-bar-item w3-button w3-hover-white">Log in</a> 
+      <a href="../HomePage/HomePage.php" onclick="w3_close()"  class="w3-bar-item w3-button w3-hover-white">Home</a> 
+      <a href="../Login&SignUp/SignUp.php" onclick="w3_close()"  class="w3-bar-item w3-button w3-hover-white">Sign Up</a> 
+      <a href="../Login&SignUp/Login.php" onclick="w3_close()"  class="w3-bar-item w3-button w3-hover-white">Log in</a> 
   
     </div>
   </nav>
@@ -55,18 +112,23 @@
     </div>
       
 <!-- The Modal (contains the Sign Up form) -->
-  <form class="modal-content" action="../Account/Account.php">
+  <form class="modal-content" method="post">
     <div class="container">
       <h1>Log in</h1>
       <p>Please fill in this form to Log in.</p>
+      <?php if($message!==""){?>
+        <div class="alert alert-danger">
+            <?= $message ?>
+        </div>
+    <?php } ?>
       <hr>
     
       <label for="Email"><b>Email</b></label>
-      <input type="text" placeholder="Enter Email" name="email" required>
+      <input required type="text" placeholder="Enter Email" name="email" required>
       
 
       <label for="psw"><b>Password</b></label>
-      <input type="password" placeholder="Enter Password" name="psw" required>
+      <input required type="password" placeholder="Enter Password" name="psw" required>
 
      
 

@@ -20,9 +20,9 @@
       <h3 class="w3-padding-64"><b>Manara</b></h3>
     </div>
     <div class="w3-bar-block">
-      <a href="../HomePage/HomePage.html" onclick="w3_close()"  class="w3-bar-item w3-button w3-hover-white">Home</a> 
-      <a href="../Login&SignUp/SignUp.html" onclick="w3_close()"  class="w3-bar-item w3-button w3-hover-white">Sign Up</a> 
-      <a href="../Login&SignUp/Login.html" onclick="w3_close()"  class="w3-bar-item w3-button w3-hover-white">Log in</a> 
+      <a href="../HomePage/HomePage.php" onclick="w3_close()"  class="w3-bar-item w3-button w3-hover-white">Home</a> 
+      <a href="../Login&SignUp/SignUp.php" onclick="w3_close()"  class="w3-bar-item w3-button w3-hover-white">Sign Up</a> 
+      <a href="../Login&SignUp/Login.php" onclick="w3_close()"  class="w3-bar-item w3-button w3-hover-white">Log in</a> 
   
     </div>
   </nav>

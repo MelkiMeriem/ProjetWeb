@@ -1,0 +1,42 @@
+.fields{
+    color: rgb(162, 158, 158);
+    margin-top: 0;
+    font-size: 16px;
+    width: fit-content;
+  }
+
+  .fields:hover{
+    
+    font-size: 20px;
+    cursor: pointer;
+    transition: font-size 0.5s ease;
+  }
+
+  .button{
+    width: 50%;
+    border : hidden;
+    margin-bottom: 20px;
+    padding: 5px;
+  }
+
+  .Display{
+  
+    width: 100%;
+  }
+
+.fundRow{
+  padding-top: 10px;
+  background-color: rgb(164, 162, 160);
+  margin-bottom: 5px;
+  margin-top :5px;
+  width: 100%;
+}
+
+.fundRow:hover{
+  background-color: rgb(237, 116, 80);
+}
+.p{
+  color: white;
+
+}
+
