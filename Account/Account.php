@@ -61,7 +61,7 @@
       </div>
       <div class="row">
         <?php ShowAttribute("Age",$_SESSION["Age"]) ?>
-        <?php ShowAttribute("Phone",$_SESSION["Phone"]) ?>
+        <?php ShowAttribute("Phone",$_SESSION["PhoneNumber"]) ?>
       </div>
       <br/>
       <h4 style="margin-bottom:0%;">Contribution</h4>
