@@ -1,3 +1,30 @@
+<?php
+
+$message = "";
+
+  include("../DB/database.php");
+
+  if($_SERVER['REQUEST_METHOD'] === 'POST'){
+    $name=$_POST["name"];
+    $imagelink=$_POST["img"];
+    $purpose=$_POST["prp"];
+    $password=$_POST["psw"];
+    $email=$_POST["email"];
+    if(empty($name) || empty($imagelink) || empty($purpose) || empty($password) || empty($email)){
+      $message = "Missing field !";
+    }
+    else{
+      $sql = "INSERT INTO campaign (Name, Imagelink ,Purpose, OwnerPassword, OwnerEmail, Budget, sum)
+      VALUES ('$name', '$imagelink', '$purpose', '$password', '$email', 0,0)";
+      try{$email_result = mysqli_query($conn, $sql);
+      }
+      catch(Exception $e){
+        $message = $e->getMessage();
+      }
+    }
+  }
+  mysqli_close($conn);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -51,6 +78,11 @@
     <div class="container">
       <h1>Create Campaign</h1>
       <p>Please fill in this form to create a Campaign.</p>
+      <?php if($message!==""){?>
+        <div class="alert alert-danger">
+            <?= $message ?>
+        </div>
+    <?php } ?>
       <hr>
       <label for="email"><b>Campaign Name:</b></label>
       <input type="text" placeholder="Enter Campaign Name" name="name" required>

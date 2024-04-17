@@ -1,10 +1,8 @@
 
-<<<<<<< HEAD
 <?php
 include("../public/menu2.php");
 ?>  
 <div class="w3-main" style="margin-left:340px;margin-right:40px">
-=======
     <title>Document</title>
 </head>
 <body>
@@ -34,7 +32,6 @@ include("../public/menu2.php");
   
   <!-- !PAGE CONTENT! -->
   <div class="w3-main" style="margin-left:340px;margin-right:40px">
->>>>>>> a4f4117 (progression)
   
     <!-- Header -->
     <div class="w3-container" style="margin-top:80px" id="showcase">
