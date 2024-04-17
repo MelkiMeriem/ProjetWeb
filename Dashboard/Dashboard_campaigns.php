@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="./Dashboard.css">
 </head>
 <body>
+    <?php 
+    include ("./DisplayNav.php");
+    DisplayNav("./Dashboard_users.php","See Users Dashboard")?>
     <p1 id="title">Campaigns Dashboard</p1>
     <hr>
 
@@ -23,7 +26,7 @@
             }
         }
 
-        $tableHeaders = ["Name", "Purpose", "Owner Email", "Owner Password", "Campaing ID", "Budget", "Imagelink"];
+        $tableHeaders = ["Name", "Purpose", "Owner Email", "Owner Password", "Campaing ID", "Budget", "Imagelink","Sum"];
 
         displayTable($data, $tableHeaders, "CampaignID", "Campaign");
 ?>

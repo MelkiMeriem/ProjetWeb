@@ -1,20 +1,6 @@
-
 <?php
-include("../public/menu2.php");
-?>  
-<div class="w3-main" style="margin-left:340px;margin-right:40px">
-  
-    <!-- Header -->
-    <div class="w3-container" style="margin-top:80px" id="showcase">
-      <h1 class="w3-jumbo"><b>Your platform for mutual aid</b></h1>
-    </div>
-    <div class="w3-row-padding w3-grayscale">
-
-    <?php
-      $link=mysqli_connect("localhost","root","","manaradb");
-
-    $sql="select * from campaign";
-    $result = mysqli_query($link, $sql);
+      
+    $result = mysqli_query($conn, $sql);
 
     if (mysqli_num_rows($result) > 0) {
       // Fetch associative array
@@ -42,9 +28,6 @@ include("../public/menu2.php");
       </div>
     </div>
   </div>" ;};}
-  mysqli_close($link);
+  mysqli_close($conn);
 
     ?>
-    </div>
-
- </div>   

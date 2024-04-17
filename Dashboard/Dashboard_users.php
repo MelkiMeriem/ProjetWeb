@@ -7,8 +7,12 @@
     <title>UsersTable</title>
 </head>
 <body>
-    <p1 id="title">Users Table</p1>
-    <hr>
+  <?php 
+    include ("./DisplayNav.php");
+    DisplayNav("./Dashboard_campaigns.php","See Campaigns Dashboard")?>
+
+  <p1 id="title">Users Table</p1>
+    
 
     <?php
     include('../DB/database.php');
@@ -23,17 +27,18 @@
             }
         }
 
-        $tableHeaders = ["Name", "Age", "Email", "Password"];
+        $tableHeaders = ["Name", "Age", "Email", "Password","Phone Number"];
 
         displayTable($data, $tableHeaders, "CampaignID", "Campaign");
 ?>
 
 <div id="container">
         <form action="Dashboard_users.php" method="post">
-            <input type="text" name="email" id="input1" required>
+            <input type="text" name="email" id="input1">
             <div class="labelline">Delete User</div>
             <br>
-            <input type="submit" name="submit" value="Delete" id="submit">
+            <input type="submit" name="submit" value="Delete" id="submit"> 
+            
         </form>
 
         <?php
@@ -47,7 +52,10 @@
           }
         }
         mysqli_close($conn);
+        if (isset($_POST['changedash']))
+          {header("Location: ./Dashboard_campaigns.php");}
         ?>
-    </div>
+  
+    
 </body>
 </html>
