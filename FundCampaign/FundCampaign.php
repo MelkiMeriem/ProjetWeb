@@ -16,7 +16,7 @@ include("../public/menu2.php");
   <body>
   <div class='w3-main' style='margin-left:340px;margin-right:40px'>
 
-  <form class='modal-content' action='' method='POST'>
+  <form class='modal-content' action='Fund.php' method='POST'>
     <div class='container'>
       <h1>Fund Campaign</h1>
       <p>Please fill in this form to Fund the Campaign.</p>
@@ -39,38 +39,4 @@ include("../public/menu2.php");
   </form>
 </div>
 </body>"
-    
-?>
-<?php
-if($_SERVER['REQUEST_METHOD'] === 'POST'){
- 
-  $cid=$_SESSION["id"] ;
-  $psw=$_SESSION["psw"] ;
-  $email=$_SESSION["Email"] ;
-  $amt=$_POST["amt"];
-  $currentDate = date("Y-m-d H:i:s");
-      $req1="  INSERT into fund (fundid ,CampaignID,UserEmail,UserPassword,Date,Amount) 
-      values('','$cid','$email' ,'$psw','$currentDate','$amt')";
-      
-      $req2="
-      UPDATE Campaign
-      SET Budget=Budget+'$amt'
-      where CampaignID='$cid'
-      ";
-      if(mysqli_query($conn,$req1)){
-        mysqli_query($conn,$req2);
-
-        echo  " <h1 class='w3-jumbo'><b> Thank you for your help. </b></h1>"; }
-     else{
-         echo " <h1 class='w3-jumbo'><b> Wrong Mail or Password. </b></h1>";
-      
-  }
-
-
-  }
-  
-     
-
-
-mysqli_close($conn);
 ?>
