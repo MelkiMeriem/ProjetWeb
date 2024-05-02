@@ -1,10 +1,13 @@
 <?php
   session_start();
   include("../DB/database.php");
- 
-    $cid=$_SESSION["id"] ;
-    $psw=$_SESSION["psw"] ;
-    $email=$_SESSION["Email"] ;
+      $psw=$_SESSION["psw"] ;
+      $email=$_SESSION["Email"] ;
+      $cid=$_POST["cid"];
+      $_SESSION["cid"]=$cid;
+
+
+
 ?>
 <?php
 include("../public/menu2.php");
@@ -25,7 +28,7 @@ include("../public/menu2.php");
       <input type='text' VALUE='$email' name='email' disabled >
     
       <label for='amt'><b>Campaign's ID : </b></label><br>
-      <input type='text' name='cid' disabled value='$cid' >
+      <input type='text' name='cid' value=$cid  >
        <br>
       <label for='amt'><b>Amount</b></label><br>
       <input type='text' placeholder='Enter the Amount' name='amt' required>
@@ -38,5 +41,5 @@ include("../public/menu2.php");
     </div>
   </form>
 </div>
-</body>"
+</body>";
 ?>

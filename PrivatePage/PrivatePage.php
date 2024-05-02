@@ -1,8 +1,20 @@
-
 <?php
-include("../public/menu2.php");
-?>  
-<div class="w3-main" style="margin-left:340px;margin-right:40px">
+  session_start();
+  include("../DB/database.php");
+  $pwd=$_SESSION["psw"] ;
+  $email=$_SESSION["Email"] ;
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+    <link rel="stylesheet" href="../Login&SignUp/style.css">
+    <link rel="stylesheet" href="../HomePage/HomePage.css">
+      <script src="../HomePage/HomePage.js"></script>
+
     <title>Document</title>
 </head>
 <body>
@@ -40,6 +52,7 @@ include("../public/menu2.php");
     <div class="w3-row-padding w3-grayscale">
 
     <?php
+    
       $link=mysqli_connect("localhost","root","","manaradb");
 
     $sql="select * from campaign";
@@ -51,7 +64,7 @@ include("../public/menu2.php");
       $name=$row["Name"];
       $imagelink=$row["Imagelink"];
       $purpose=$row["Purpose"];
-      $id=$row["CampaignID"];
+      $cid=$row["CampaignID"];
 
 
       echo "
@@ -64,16 +77,16 @@ include("../public/menu2.php");
           </p>
         <p>'$purpose' 
          <form method='POST' action='../FundCampaign/FundCampaign.php'  >
-         <input type='text' value='$id'  id='cid' name='cid' disabled >
+         <input type='text'   id='cid' name='cid' value='$cid' >
         <input type='submit' value='Fund Campaign' id='btn' name='btn'>
         </form></p>
        
       </div>
     </div>
-  </div>" ;};}
+  </div>" ;
+  
+};}
   mysqli_close($link);
-
     ?>
     </div>
-
  </div>   

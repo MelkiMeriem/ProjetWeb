@@ -1,10 +1,7 @@
 <?php
   session_start();
   include("../DB/database.php");
- 
-    $cid=$_SESSION["id"] ;
-    $psw=$_SESSION["psw"] ;
-    $email=$_SESSION["Email"] ;
+
 ?>
   <body>
 
@@ -12,14 +9,14 @@
 include("../public/menu2.php");
 ?>
 <?php
-if($_SERVER['REQUEST_METHOD'] === 'POST'){
+if($_SERVER['REQUEST_METHOD'] == 'POST'){
  
-  $cid=$_SESSION["id"] ;
+  $cid=$_SESSION["cid"] ;
   $psw=$_SESSION["psw"] ;
   $email=$_SESSION["Email"] ;
   $amt=$_POST["amt"];
   $currentDate = date("Y-m-d H:i:s");
-      $req1="  INSERT into fund (fundid ,CampaignID,UserEmail,UserPassword,Date,Amount) 
+      $req1="INSERT into fund (fundid ,CampaignID,UserEmail,UserPassword,Date,Amount) 
       values('','$cid','$email' ,'$psw','$currentDate','$amt')";
       
       $req2="
@@ -31,7 +28,8 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
       if(mysqli_query($conn,$req1)){
         mysqli_query($conn,$req2);
 
-        echo  "<div class='w3-main' style='margin-left:340px;margin-right:40px' margin-top:40px> <h1 class='w3-jumbo'><b> Thank you for your help. </b></h1> </div>"; }
+        echo  "<div class='w3-main' style='margin-left:340px;margin-right:40px' margin-top:40px> <h1 class='w3-jumbo'><b> Thank you for your help. </b></h1> </div>";
+       }
      else{
          echo "<div class='w3-main' style='margin-left:340px;margin-right:40px margin-top:40px'> <h1 class='w3-jumbo'><b> Wrong Mail or Password. </b></h1> </div>";
       
