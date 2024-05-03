@@ -1,3 +1,5 @@
+<?php session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,8 +9,19 @@
     <title>UsersTable</title>
 </head>
 <body>
-    <p1 id="title">Users Table</p1>
-    <hr>
+
+  <?php 
+    
+    if ($_SESSION["Verified"]==false)
+      {
+        header("Location: ./admin_authent.php");
+      }
+
+    include ("./DisplayNav.php");
+    DisplayNav("./Dashboard_campaigns.php","See Campaigns Dashboard")?>
+
+  <p1 id="title">Users Table</p1>
+    
 
     <?php
     include('../DB/database.php');
@@ -30,10 +43,11 @@
 
 <div id="container">
         <form action="Dashboard_users.php" method="post">
-            <input type="text" name="email" id="input1" required>
+            <input type="text" name="email" id="input1">
             <div class="labelline">Delete User</div>
             <br>
-            <input type="submit" name="submit" value="Delete" id="submit">
+            <input type="submit" name="submit" value="Delete" id="submit"> 
+            
         </form>
 
         <?php
@@ -41,13 +55,16 @@
         if (isset($_POST['submit'])) {
           if (isset($_POST['email']) && !empty($_POST['email'])) {
             $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
-            deleteData($conn, 'user', 'email', $email); 
+            deleteData($conn,'Dashboard_users','user', 'email', $email); 
           } else {
             echo "<p>Please enter a user email to delete.</p>";
           }
         }
         mysqli_close($conn);
+        if (isset($_POST['changedash']))
+          {header("Location: ./Dashboard_campaigns.php");}
         ?>
-    </div>
+  
+    
 </body>
 </html>

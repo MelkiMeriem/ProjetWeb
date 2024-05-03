@@ -1,3 +1,9 @@
+<?php
+  session_start();
+  include("../DB/database.php");
+  $pwd=$_SESSION["psw"] ;
+  $email=$_SESSION["Email"] ;
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,8 +11,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+    <link rel="stylesheet" href="../Login&SignUp/style.css">
     <link rel="stylesheet" href="../HomePage/HomePage.css">
-    <link rel="stylesheet" href="PrivatePage.css">
       <script src="../HomePage/HomePage.js"></script>
 
     <title>Document</title>
@@ -21,9 +27,9 @@
     </div>
     <div class="w3-bar-block">
     <a href="../PrivatePage/PrivatePage.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Home</a> 
-      <a href="../CreateCampaign/CreateCampaign.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Create Campaign</a> 
+      <a href="../CreateCampaign/CreateCampaign.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Create Campaign</a> 
       <a href="../Account/Account.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Account</a> 
-      <a href="../HomePage/HomePage.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Log out</a> 
+      <a href="../HomePage/HomePage.php" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Log out</a> 
   
     </div>
   </nav>
@@ -46,10 +52,11 @@
     <div class="w3-row-padding w3-grayscale">
 
     <?php
-    require("../DB/database.php");
+    
+      $link=mysqli_connect("localhost","root","","manaradb");
 
     $sql="select * from campaign";
-    $result = mysqli_query($conn, $sql);
+    $result = mysqli_query($link, $sql);
 
     if (mysqli_num_rows($result) > 0) {
       // Fetch associative array
@@ -57,7 +64,7 @@
       $name=$row["Name"];
       $imagelink=$row["Imagelink"];
       $purpose=$row["Purpose"];
-      $id=$row["CampaignID"];
+      $cid=$row["CampaignID"];
 
 
       echo "
@@ -70,21 +77,16 @@
           </p>
         <p>'$purpose' 
          <form method='POST' action='../FundCampaign/FundCampaign.php'  >
-         <input type='text' value='$id'  id='cid' name='cid' disabled >
+         <input type='text'   id='cid' name='cid' value='$cid' >
         <input type='submit' value='Fund Campaign' id='btn' name='btn'>
         </form></p>
        
       </div>
     </div>
-  </div>" ;};}
-  mysqli_close($conn);
-
+  </div>" ;
+  
+};}
+  mysqli_close($link);
     ?>
     </div>
-    
-
-  
-    
-  
-</body>
-</html>
+ </div>   

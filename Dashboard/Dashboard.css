@@ -1,3 +1,6 @@
+body{
+    width:1800px;
+}
 .content-table
 {   
     margin: 25px 0px;
@@ -121,5 +124,19 @@ hr{
 p{  padding-top: 10px;
     padding-left: 20px;
     font-size: 1.1em;
+    
    
 }
+#arrow{background-color:#009879;
+    
+    position: relative;
+    top:7px;
+    right: 7px;;
+    
+    }
+#link{
+    
+   color: hsl(146, 58%, 32%); 
+}
+#nav{margin-right: auto;
+width: 250px;}

@@ -7,6 +7,10 @@
     <link rel="stylesheet" href="./Dashboard.css">
 </head>
 <body>
+    <?php 
+    
+    include ("./DisplayNav.php");
+    DisplayNav("./Dashboard_users.php","See Users Dashboard")?>
     <p1 id="title">Campaigns Dashboard</p1>
     <hr>
 
@@ -42,7 +46,7 @@
         if (isset($_POST['submit'])) {
           if (isset($_POST['id']) && !empty($_POST['id'])) {
             $id = filter_input(INPUT_POST, 'id', FILTER_VALIDATE_INT);
-            deleteData($conn, 'campaign', 'CampaignID', $id); 
+            deleteData($conn, 'Dashboard_campaigns','campaign', 'CampaignID', $id); 
           } else {
             echo "<p>Please enter a Campaign ID to delete.</p>";
           }
