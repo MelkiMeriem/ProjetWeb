@@ -20,13 +20,15 @@ $message = "";
         $row = mysqli_fetch_assoc($email_result);
         $password = $row["Password"];
         $pwd = $_POST["psw"];
+        $hash = password_hash($pwd, PASSWORD_DEFAULT);
 
-        if($psw == $password){
+        if(password_verify($password, $hash)){
 
           $_SESSION["Email"] = $email;
           $_SESSION["Age"] = $row["Age"];
           $_SESSION["Name"] = $row["Name"];
           $_SESSION["PhoneNumber"] = $row["phone"];
+          
           $nbr_compaign_sql = "SELECT count(CampaignID) as nbrCompaign FROM campaign WHERE OwnerEmail = '$email'";
           $nbr_fund_sql = "SELECT count(FundID) as nbrFund FROM fund WHERE UserEmail = '$email'";
           $compaign_result = mysqli_query($conn, $nbr_compaign_sql);
@@ -62,7 +64,7 @@ $message = "";
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" 
     rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="style1.css">
+    <link rel="stylesheet" href="style.css">
         <link rel="stylesheet" href="../HomePage/HomePage.css">
       <script src="../HomePage/HomePage.js"></script>
 
