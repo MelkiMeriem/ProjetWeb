@@ -1,5 +1,7 @@
 <?php
   session_start();
+  
+  $_SESSION["Verify"]=false;
   include("../DB/database.php");
       $psw=$_SESSION["psw"] ;
       $email=$_SESSION["Email"] ;

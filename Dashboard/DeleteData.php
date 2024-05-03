@@ -1,6 +1,6 @@
 <?php
 
-function deleteData($conn, $tableName, $columnName, $inputValue) {
+function deleteData($conn, $file_name,$tableName, $columnName, $inputValue) {
   $stmt = mysqli_prepare($conn, "DELETE FROM $tableName WHERE $columnName = ?");
   mysqli_stmt_bind_param($stmt, "s", $inputValue);
 
@@ -9,7 +9,7 @@ function deleteData($conn, $tableName, $columnName, $inputValue) {
       echo "<p>Record deleted successfully.</p>";
       // Optional: Redirect after 1.7 seconds
       echo "<script>
-        setTimeout(() => { window.location.href = 'http://localhost/ProjetWeb/Dashboard/' . $tableName . '.php'; }, 1700);
+        setTimeout(() => { window.location.href = 'http://localhost/ProjetWeb/Dashboard/{$file_name}.php'; }, 500);
       </script>";
     } else {
       echo "<p>No records found with the given " . ucfirst($columnName) . ".</p>";

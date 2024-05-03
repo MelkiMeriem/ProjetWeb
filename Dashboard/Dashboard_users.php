@@ -1,3 +1,5 @@
+<?php session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +9,14 @@
     <title>UsersTable</title>
 </head>
 <body>
+
   <?php 
+    
+    if ($_SESSION["Verified"]==false)
+      {
+        header("Location: ./admin_authent.php");
+      }
+
     include ("./DisplayNav.php");
     DisplayNav("./Dashboard_campaigns.php","See Campaigns Dashboard")?>
 
@@ -46,7 +55,7 @@
         if (isset($_POST['submit'])) {
           if (isset($_POST['email']) && !empty($_POST['email'])) {
             $email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
-            deleteData($conn, 'user', 'email', $email); 
+            deleteData($conn,'Dashboard_users','user', 'email', $email); 
           } else {
             echo "<p>Please enter a user email to delete.</p>";
           }

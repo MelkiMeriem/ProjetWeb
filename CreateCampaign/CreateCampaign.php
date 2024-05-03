@@ -1,5 +1,6 @@
 <?php
-
+session_start();
+$_SESSION["Verify"]=false;
 $message = "";
 
   include("../DB/database.php");
