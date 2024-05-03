@@ -1,5 +1,5 @@
 <?php
-    session_start();
+ 
     $_SESSION["Verify"]=false;
     $result = mysqli_query($conn, $sql);
 

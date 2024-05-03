@@ -1,8 +1,7 @@
 <?php
   session_start();
   include("../DB/database.php");
-  $pwd=$_SESSION["psw"] ;
-  $email=$_SESSION["Email"] ;
+  
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -53,10 +52,10 @@
 
     <?php
     
-      $link=mysqli_connect("localhost","root","","manaradb");
+      
 
     $sql="select * from campaign";
-    $result = mysqli_query($link, $sql);
+    $result = mysqli_query($conn, $sql);
 
     if (mysqli_num_rows($result) > 0) {
       // Fetch associative array
@@ -86,7 +85,7 @@
   </div>" ;
   
 };}
-  mysqli_close($link);
+  mysqli_close($conn);
     ?>
     </div>
  </div>   

@@ -5,9 +5,21 @@
 <html lang="en">
 
 <?php 
-    include("../public/menu2.php");
-    include("../DB/database.php"); 
+    include("../public/menu1.php");
   ?>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" 
+    rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="style2.css">
+        <link rel="stylesheet" href="../HomePage/HomePage.css">
+      <script src="../HomePage/HomePage.js"></script>
+
+</head>
 
 <!-- Overlay effect when opening sidebar on small screens -->
   <div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
@@ -37,7 +49,7 @@
     <!-- Button to open the modal -->
 
 <!-- The Modal (contains the Sign Up form) -->
-  <form class="modal-content" action="../Account/Account.php" method="POST">
+  <form class="modal-content" action="" method="POST" autocomplete="off">
     <div class="container">
       <h1>Sign Up</h1>
       <p>Please fill in this form to create an account.</p>
@@ -46,6 +58,8 @@
       <input type="text" placeholder="Enter Name" name="name" required>
       <label for="age"><b>Age</b></label>
       <input type="text" placeholder="Enter Age" name="age" required>
+      <label for="phone"><b>Phone Number</b></label>
+      <input type="text" placeholder="Enter Phone Number" name="phone" required>
       <label for="email"><b>Email</b></label>
       <input type="text" placeholder="Enter Email" name="email" required>
       
@@ -70,64 +84,50 @@
 </html>
 
 <?php
+    include("../DB/database.php"); 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   // Récupérer les données du formulaire
   $name = $_POST["name"];
   $email = $_POST["email"];
-  if("psw"=="psw-repeat"){  // Here, you're comparing two strings "psw" and "psw-repeat", not their respective POST values
-      $psw = $_POST["psw"]; 
-  } else {
-      echo "the passwords entered are not identical"; 
-  }
+  $phone = $_POST["phone"];
+  $psw = $_POST["psw"];
+  $psw_repeat = $_POST["psw-repeat"];
   $age = $_POST["age"];
-  if(empty($name)){
-      echo "please enter username"; 
-  }
-  if(empty($psw)){
-      echo "please enter a password"; 
-  } else {
-      $hash=password_hash($psw,PASSWORD_DEFAULT);
-  }
-  if(empty($email)){
-      echo "please enter you email"; 
-  }
-  if(empty($age)){
-      echo "please enter your age"; 
-  }
-  if (!is_numeric($age)) {
-      die("L'âge doit être numérique.");
-  }
-  if (!ctype_alnum($psw)) {
-      die("Le mot de passe doit être alphanumérique.");
-  }
-} // Here's the closing curly brace for the if ($_SERVER["REQUEST_METHOD"] == "POST") block
-
-// Ajouter les données à la base de données
-$request = "INSERT INTO manaradb (name, email, psw , age ) VALUES ('$name', '$email', '$hash','$age')";
-try {
-  $stmt = mysqli_prepare($conn, $request);
-} catch(mysqli_connect_error) {
-  echo "could not register"; 
-}
-
-if ($stmt) {
-  // Binder les paramètres
-  mysqli_stmt_bind_param($stmt, "ssis", $name, $email, $age, $hash);
-  // Exécuter la déclaration
-  if (mysqli_stmt_execute($stmt)) {
-      // Rediriger vers une page de confirmation
-      echo "you are now signed up"; 
-      header("Location: PrivatePage.php");
+  
+  // Verify passwords match
+  if ($psw != $psw_repeat) {
+      echo "The passwords entered are not identical"; 
       exit;
-  } else {
-      echo "Erreur d'exécution de la requête : " . mysqli_error($conn);
   }
-  // Fermer la déclaration
-  mysqli_stmt_close($stmt);
-} else {
-  echo "Erreur de préparation de la requête : " . mysqli_error($conn);
+  
+  // Hash the password
+  $hash = password_hash($psw, PASSWORD_DEFAULT);
+  
+  // Validate other fields
+  if (empty($name) || empty($psw) || empty($email) || empty($age) || empty($phone)) {
+      echo "Please fill in all fields"; 
+      exit;
+  }
+  
+  if (!is_numeric($age)) {
+      echo "Invalid age"; 
+      exit;
+  }
+  
+  if (!is_numeric($phone)) {
+      echo "Your Phone Number is Invalid"; 
+      exit;
+  }
+  
+  if (!ctype_alnum($psw)) {
+      echo "Your Password must contain Letters and Numbers only"; 
+      exit;
+  }
+  
+  
+  $request = "INSERT INTO user (Name, Email, Password, Age, Phone) VALUES ('$name', '$email', '$hash', '$age', '$phone')";
+  mysqli_query($conn, $request);
+  echo "You are now signed up"; 
+  header("Location: PrivatePage.php");
 }
-// Fermer la connexion à la base de données
-mysqli_close($conn);
-
 ?>
