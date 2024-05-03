@@ -100,9 +100,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       exit;
   }
   
-  // Hash the password
-  $hash = password_hash($psw, PASSWORD_DEFAULT);
-  
+
   // Validate other fields
   if (empty($name) || empty($psw) || empty($email) || empty($age) || empty($phone)) {
       echo "Please fill in all fields"; 
@@ -125,7 +123,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   }
   
   
-  $request = "INSERT INTO user (Name, Email, Password, Age, Phone) VALUES ('$name', '$email', '$hash', '$age', '$phone')";
+  $request = "INSERT INTO user (Name, Email, Password, Age, Phone) VALUES ('$name', '$email', '$psw', '$age', '$phone')";
   mysqli_query($conn, $request);
   echo "You are now signed up"; 
   header("Location: PrivatePage.php");
